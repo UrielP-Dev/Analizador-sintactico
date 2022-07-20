@@ -1,5 +1,6 @@
 import ply.yacc as yacc
 from lexer import tokens, lexer
+import json
 
 success = True
 
@@ -261,41 +262,29 @@ def p_error(p):
 # Build the parser
 parser = yacc.yacc()
 
+def call_Parse(source_code):
+    # Give the lexer some input
+    lexer.input(source_code)
 
-source_code = """
-# include <stdlib.h>
-# define TRUE 1
+    # Tokenize
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break  # No more input
+        print(tok)
 
-// comment
+    print("\n")
 
-int main (int a) {
-    if (a ==  2) {
-        int b = 3;
-        b = b*a;
-    }
-}
-"""
+    lexer.lineno = 0
 
-# Give the lexer some input
-lexer.input(source_code)
+    # Parse
+    ast = parser.parse(source_code)
 
-# Tokenize
-while True:
-    tok = lexer.token()
-    if not tok:
-        break  # No more input
-    print(tok)
+    # Print result
+    if success:
+        print("Input is valid")
+        print(json.dumps(ast, indent=2))
+    else:
+        print("Input is not valid")
 
-print("\n")
 
-lexer.lineno = 0
-
-# Parse
-ast = parser.parse(source_code)
-
-# Print result
-if success:
-    print("Input is valid")
-    print(ast)
-else:
-    print("Input is not valid")
