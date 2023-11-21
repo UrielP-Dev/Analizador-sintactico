@@ -282,8 +282,8 @@ def call_Parse(source_code):
 
     # Print result
     if success:
-        print("Input is valid")
-        print(json.dumps(ast, indent=2))
+        print("Es valido")
+        #print(json.dumps(ast, indent=2))
     else:
         print("Input is not valid")
 

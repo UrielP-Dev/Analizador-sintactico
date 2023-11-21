@@ -1,39 +1,27 @@
 import parser_yacc
-import os
 
 def menu():
     opcion = 0
-    while (opcion != 3):
+    while (opcion != 2):
         print('''MENU ANALIZADOR SINTÁCTICO
-         \t1: Línea de código
-         \t2: Leer archivo.c++
-         \t3: Salir''')
-        opcion = int(input("opcion: "))
+         \t1: Analizar código desde archivo
+         \t2: Salir''')
+        opcion = int(input("Opción: "))
         if opcion == 1:
-            linea = input("Ingrese una línea de código c++: \n")
-            if (linea): 
-                parser_yacc.call_Parse(linea)
-            else:
-                print("\nIngrese código c++ válido")
-            print("\npresione enter para continuar...")    
+            file_path = "codigo_fuente.txt"
+            try:
+                with open(file_path, 'r') as file:
+                    data = file.read()
+                    parser_yacc.call_Parse(data)
+            except FileNotFoundError:
+                print("No se pudo encontrar el archivo 'codigo_fuente.txt'")
+            print("\nPresione Enter para continuar...")
             input()
         elif opcion == 2:
-            path = input("Ingrese la dirección del archivo a analizarse: \n")
-            if ( os.path.exists (path)):
-                f = open(path)
-                data = f.read()
-                f.close()
-                parser_yacc.call_Parse(data)
-            else:
-                print ("El archivo no existe")
-            print("\npresione enter para continuar...")
-            input()
-        elif opcion == 3:
-            print("gracias por usar este programa")
+            print("Gracias por usar este programa")
         else:
-            print("ok")
+            print("Opción no válida. Intente de nuevo.")
     pass
 
-
 if __name__ == '__main__':
-    menu()  
+    menu()

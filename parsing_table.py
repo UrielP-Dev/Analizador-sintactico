@@ -332,7 +332,7 @@ tabla2 = [
     [F, "COMMA", None],
     [F, "PLUS", None],
     [F, "MINUS", None],
-    [F, "TIMES", None],
+    [F, "TIMES", None], 
     [F, "DIVIDE", None],
     [F, "NUMBER", [C]],
     [F, "LETTER", [C]],
