@@ -1,7 +1,11 @@
+# include <stdlib.h>
+// comment
 int main (int a) {
     if (a ==  2) {
         int b = 3;
         b = b*a;
-        
+        while(a>2){
+            b=2+3;
+        }
     }
 }

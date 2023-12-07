@@ -1,5 +1,4 @@
 # include <stdlib.h>
-# define TRUE 1
 // comment
 int main (int a) {
     if (a ==  2) {
